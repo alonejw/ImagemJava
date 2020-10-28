@@ -24,8 +24,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-//ghj
-//oioi
+
 /**
  *
  * @author fwmar
