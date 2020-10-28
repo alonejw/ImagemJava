@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
 import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
- * @author fwmar teste
+ * @author fwmar testesdsadsdd
  */
 public class Tela extends JFrame{
     
