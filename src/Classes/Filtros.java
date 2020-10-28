@@ -48,6 +48,7 @@ public class Filtros implements ActionListener
         menu.add(m1o1); menu.add(m1o2); menu.add(m1o3);  
        
         //oioioioi
+        //luizzzzzzzzzzzzzz
         
         filtros=new JMenu("Efeitos");  
         m2o1=new JMenuItem("Preto e Branco");
