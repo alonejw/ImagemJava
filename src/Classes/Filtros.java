@@ -121,8 +121,7 @@ public class Filtros implements ActionListener
                 janela.setLocationRelativeTo(null);
                 janela.pack();
                 janela.setVisible(true);
-                label.repaint();
-                janela.repaint();
+                
                 //janela.setSize(640, 480);
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -152,28 +151,28 @@ public class Filtros implements ActionListener
                 mostraEfeito(imageGray);
     }
     
-    public void negativo(BufferedImage origImage1) {
-        int width = origImage1.getWidth();
-        int height = origImage1.getHeight();
+    public void negativo(BufferedImage Image1) {
+        int width = Image1.getWidth();
+        int height = Image1.getHeight();
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {               
-                int rgb = origImage1.getRGB(i, j);               //a cor inversa é dado por 255 menos o valor da cor                 
+                int rgb = Image1.getRGB(i, j);               //a cor inversa é dado por 255 menos o valor da cor                 
                 int r = 255 - (int)((rgb&0x00FF0000)>>>16);
                 int g = 255 - (int)((rgb&0x0000FF00)>>>8);
                 int b = 255 - (int) (rgb&0x000000FF);
                 Color color = new Color(r, g, b);
-                origImage1.setRGB(i, j, color.getRGB());
+                Image1.setRGB(i, j, color.getRGB());
             }
         }
-        mostraEfeito(origImage1);
+        mostraEfeito(Image1);
     }
     
-    public void mediana(BufferedImage image, int limiar) {
-        int width = image.getWidth();
-        int height = image.getHeight();
+    public void mediana(BufferedImage origImage1, int limiar) {
+        int width = origImage1.getWidth();
+        int height = origImage1.getHeight();
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {               
-                int rgb = image.getRGB(i, j);               
+                int rgb = origImage1.getRGB(i, j);               
                 int r = (int)((rgb&0x00FF0000)>>>16);
                 int g = (int)((rgb&0x0000FF00)>>>8);
                 int b = (int) (rgb&0x000000FF);
@@ -184,25 +183,27 @@ public class Filtros implements ActionListener
                 //que é um valor "divisor de águas"
                 //pixels com valor ABAIXO do limiar viram pixels PRETOS,
                 //pixels com valor ACIMA do limiar viram pixels BRANCOS
-                if (media < limiar)
-                    image.setRGB(i, j, black.getRGB());
-                else
-                    image.setRGB(i, j, white.getRGB());
+                if (media < limiar){
+                    origImage1.setRGB(i, j, black.getRGB());
+                }else{
+                    origImage1.setRGB(i, j, white.getRGB());
+                }
             }
+            
         }
-        mostraEfeito(image);
+        mostraEfeito(origImage1);
     }
     
     public void mostraEfeito(BufferedImage imagem){
                 ImageIcon image = new ImageIcon(imagem);
-                label.setIcon(image);
-                janela.getContentPane().add(label);
-                janela.setLocationRelativeTo(null);
-                janela.pack();
-                janela.setVisible(true);
                 label.repaint();
                 janela.repaint();
-    }
+                label.revalidate();
+                janela.revalidate();
+                label.setIcon(image);
+                janela.setVisible(true);
+                
+    }   
     
     
 }
